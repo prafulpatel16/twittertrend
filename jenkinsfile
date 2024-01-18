@@ -4,7 +4,10 @@ pipeline {
             label "java-slave"
         }
     }
-
+    environment {
+        PATH = "//usr/share/maven/bin/mvn:$PATH"
+    }
+    
     stages {
         stage('Build') {
             steps {
@@ -16,9 +19,9 @@ pipeline {
 
         stage('Unit Test'){
             steps {
-                echo "---------- Unti Testing Started --------"
+                echo "---------- Unit Testing Started --------"
                 sh 'mvn surefire-report:report'
-                echo "---------- Unti Testing Stopped --------"
+                echo "---------- Unit Testing Stopped --------"
             }
         }
 
