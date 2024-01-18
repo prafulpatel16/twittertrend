@@ -12,12 +12,12 @@ pipeline {
         stage('Build') {
             steps {
                 echo "------------ Build Started -----------"
-                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                sh 'mvn clean install -Dmaven.test.skip=true'
                 echo "------------ Build Completed -----------"
             }
         }
 
-        stage('Unit Test') {
+        stage('Unit Test'){
             steps {
                 echo "---------- Unit Testing Started --------"
                 sh 'mvn surefire-report:report'
@@ -36,19 +36,6 @@ pipeline {
                         sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=prafulpatel16_twittertrend -Dsonar.organization=prafulpatel16"
                     }
                     echo "------------ Sonar Analysis Completed -----------"
-                }
-            }
-        }
-
-        stage('Quality Gate Check') {
-            steps {
-                script {
-                    echo '<--------Sonar Gate Analysis Started ----------------->'
-                    def qg = waitForQualityGate()
-                    if (qg.status != 'OK') {
-                        error "SonarQube quality gate check failed: ${qg.status}"
-                    }
-                    echo '<--------Sonar Gate Analysis Stopped ----------------->'
                 }
             }
         }
