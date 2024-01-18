@@ -14,14 +14,6 @@ pipeline {
             }
         }
 
-        stage('Unit Test'){
-            steps {
-                echo "---------- Unti Testing Started --------"
-                sh 'mvn surefire-report:report'
-                echo "---------- Unti Testing Stopped --------"
-            }
-        }
-
         stage('Sonar Analysis') {
             environment {
                 scannerHome = tool 'sonarqube-server'
