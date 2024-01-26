@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.praful</groupId>
 	<artifactId>demo-workshop</artifactId>
-	<version>2.0.2</version>
+	<version>3.0.0</version>
 	<name>demo-workshop</name>
 	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot</description>
